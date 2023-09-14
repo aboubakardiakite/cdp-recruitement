@@ -22,7 +22,7 @@ function filterAnimal(filterAnimal,data) {
     );
   }
 
-/*
+
 function countChildren(data){
 
       return data.flatMap((location) =>
@@ -42,11 +42,11 @@ function countChildren(data){
 
 }
 
-*/
+
 
 module.exports = {
     sentence,
-    filterAnimal
+    filterAnimal,countChildren
 }
 
 
