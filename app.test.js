@@ -212,8 +212,7 @@ describe('count',()=>{
       ]
       const data2 = [
       ]
-      
-      
+    
     it('should be equal',()=>{
         expect(app.countChildren(data)[0].name).toEqual('Dillauti [2]');
     })

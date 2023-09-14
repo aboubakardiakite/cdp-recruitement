@@ -22,26 +22,26 @@ function filterAnimal(filterAnimal,data) {
     );
   }
 
+  function countChildren(data){
+    const transformedData = [];
 
-function countChildren(data){
+    data.forEach(location => {
+        location.people.forEach(person => {
+            transformedData.push({
+                name: location.name + " [" + location.people.length + "]",
+                people:[
+                    {
+                        name: person.name+ " [" + person.animals.length + "]",
+                        animals: person.animals
+                    }
+                ]
+            })
+        });
+      });
 
-      return data.flatMap((location) =>
-      location.people.flatMap((person) =>
-        person.animals
-          .map((perso) => ({
-            name: location.name + " [" + location.people.length + "]",
-            people: [
-              {
-                name: person.name+ " [" + person.animals.length + "]",
-                animals: perso.name,
-              },
-            ],
-          }))
-      )
-    );
+      return transformedData;
 
 }
-
 
 
 module.exports = {
@@ -58,7 +58,7 @@ program
     if(options.filter)
         console.log(JSON.stringify(filterAnimal(options.filter,data)));
     if(options.count)
-        console.log(JSON.stringify(countChildren()));
+        console.log(JSON.stringify(countChildren(data)));
 
   });
 
