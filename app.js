@@ -2,9 +2,9 @@
 const { program } = require('commander');
 
 const {data}  = require('./data')
+const sentence  = 'Hello WOrld';
 
-
-function filterAnimal(filterAnimal) {
+function filterAnimal(filterAnimal,data) {
     return data.flatMap((location) =>
       location.people.flatMap((person) =>
         person.animals
@@ -22,8 +22,8 @@ function filterAnimal(filterAnimal) {
     );
   }
 
-
-function countChildren(){
+/*
+function countChildren(data){
 
       return data.flatMap((location) =>
       location.people.flatMap((person) =>
@@ -42,7 +42,12 @@ function countChildren(){
 
 }
 
+*/
 
+module.exports = {
+    sentence,
+    filterAnimal
+}
 
 
 program
@@ -51,7 +56,7 @@ program
   .option('--count', 'count')
   .action((options) => {
     if(options.filter)
-        console.log(JSON.stringify(filterAnimal(options.filter)));
+        console.log(JSON.stringify(filterAnimal(options.filter,data)));
     if(options.count)
         console.log(JSON.stringify(countChildren()));
 
