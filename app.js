@@ -32,12 +32,42 @@ function filterAnimal(filterAnimal){
 
 }
 
+
+function countChildren(){
+    const transformedData = [];
+
+    data.forEach(location => {
+        location.people.forEach(person => {
+            transformedData.push({
+                name: location.name + " [" + location.people.length + "]",
+                people:[
+                    {
+                        name: person.name+ " [" + person.animals.length + "]",
+                        animals: person.animals
+                    }
+                ]
+            })
+        });
+      });
+      
+      return transformedData;
+
+}
+
+
+
+
 program
   .version('1.0.0')
-  .description('Une CLI de démonstration en Node.js')
-  .option('--filter <filter>', 'Filtre à appliquer')
+  .option('--filter <filter>', 'Filter')
   .action((options) => {
         console.log(JSON.stringify(filterAnimal(options)));
-  });
+  })
+  .option('--count', 'count')
+  .action(() => {
+    console.log(JSON.stringify(countChildren()));
+
+})
+  ;
 
 program.parse(process.argv);
