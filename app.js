@@ -56,9 +56,9 @@ program
   .option('--count', 'count')
   .action((options) => {
     if(options.filter)
-        console.log(JSON.stringify(filterAnimal(options.filter,data)));
+        console.log(filterAnimal(options.filter,data));
     if(options.count)
-        console.log(JSON.stringify(countChildren(data)));
+        console.log(countChildren(data));
 
   });
 
