@@ -38,7 +38,7 @@ function countChildren(data){
     data.forEach(location => {
         transformedData.push({
             name: location.name + " [" + location.people.length + "]",
-            people : countPeople(location.people)
+            people : [...countPeople(location.people)]
         })
 
     });
