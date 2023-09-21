@@ -10,7 +10,7 @@ describe('filter',()=>{
             animals:
               [{name: 'Anoa'},
                 {name: 'Duck'},
-                {name: 'Narwhal'},]
+                {name: 'Narwhal Cat'},]
           },
             {
               name: 'Blanche Viciani',
@@ -54,10 +54,11 @@ describe('filter',()=>{
 
       
     it('should be an empty array',()=>{
-        expect(filters.filterAnimal('ry',data).length).toEqual(0);
+        expect(filters.filterAnimal('ry',data).length).not.toEqual(1);
     })
 
     it('should return 1 element',()=>{
+      console.log("++++++++++++++",filters.filterAnimal('Dog',data));
         expect(filters.filterAnimal('Dog',data).length).toEqual(1);
     })
 

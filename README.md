@@ -77,6 +77,45 @@ node app.js --count
 ]
 ```
 
+
+## Count Filter
+
+The next goal is to make count and filter work together
+
+Sample of running the command, and its output:
+
+```shell script
+node app.js --countFilter=ry
+[
+  {
+    "name": "Uzuzozne [1]",
+    "people": [
+      {
+        "name": "Lillie Abbott [1]",
+        "animals": [
+          {
+            "name": "John Dory"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Satanwi [1]",
+    "people": [
+      {
+        "name": "Anthony Bruno [1]",
+        "animals": [
+          {
+            "name": "Oryx"
+          }
+        ]
+      }
+    ]
+  }
+]
+```
+
 ## Requirements
 
 - The code must be available in a GIT repository
