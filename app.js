@@ -21,26 +21,32 @@ function filterAnimal(filterAnimal,data) {
     );
   }
 
-  function countChildren(data){
-    const transformedData = [];
-
-    data.forEach(location => {
-        location.people.forEach(person => {
-            transformedData.push({
-                name: location.name + " [" + location.people.length + "]",
-                people:[
-                    {
-                        name: person.name+ " [" + person.animals.length + "]",
-                        animals: person.animals
-                    }
-                ]
-            })
-        });
-      });
+  function countPeople(data){
+      const transformedData = [];
+      data.forEach(person =>{
+          transformedData.push({
+              name: person.name+ " [" + person.animals.length + "]",
+              animals: person.animals
+          })
+      })
 
       return transformedData;
+  }
+
+function countChildren(data){
+    const transformedData = [];
+    data.forEach(location => {
+        transformedData.push({
+            name: location.name + " [" + location.people.length + "]",
+            people : countPeople(location.people)
+        })
+
+    });
+
+    return transformedData;
 
 }
+
 
 
 module.exports = {
@@ -55,9 +61,9 @@ program
   .action((options) => {
       try {
           if(options.filter)
-              console.log(filterAnimal(options.filter,data));
+              console.log(JSON.stringify(filterAnimal(options.filter,data),null,2));
           if(options.count)
-              console.log(countChildren(data));
+              console.log(JSON.stringify(countChildren(data),null,2));
       }catch (error) {
           console.error("This command does not exist",error.message);
           process.exit(1);
