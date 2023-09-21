@@ -1,16 +1,16 @@
 
 function getChildren(data,filterChildren){
-    const transformedData = [];
-    data.forEach(animal => {
-        if (animal.name.includes(filterChildren)) {
-            transformedData.push({
-                name: animal.name
-            })
-        }
-    })
+    
+    const transformedData = data.filter( (animal) => animal.name.includes(filterChildren)).map((animalName)=>{
+        return [{
+            name: animalName.name
+        }]
+    });
+
     return transformedData;
 
 }
+
 
 function filterChildren(data,filterAnimal){
     const transformedData = [];
@@ -44,7 +44,8 @@ function filterAnimal(filterAnimal,data){
 
 }
 
-// filterChildren and filterAnimal do the dame thing so code duplication
+
+
 module.exports = {
     filterAnimal
 }

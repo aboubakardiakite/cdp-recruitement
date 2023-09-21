@@ -58,7 +58,6 @@ describe('filter',()=>{
     })
 
     it('should return 1 element',()=>{
-      console.log("++++++++++++++",filters.filterAnimal('Dog',data));
         expect(filters.filterAnimal('Dog',data).length).toEqual(1);
     })
 
