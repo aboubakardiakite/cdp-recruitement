@@ -8,7 +8,7 @@ function myFunction(filterAnimal,data,name,func) {
     if(res.length != 0){
         transformedData.push({
             name: name ,
-            people : res
+            animals : res
         })
     }
 
