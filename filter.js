@@ -1,20 +1,33 @@
 
-function filterAnimal(filterAnimal,data) {
-    return data.flatMap((location) =>
-        location.people.flatMap((person) =>
-            person.animals
-                .filter((animal) => animal.name.includes(filterAnimal))
-                .map((filteredAnimal) => ({
+
+
+
+
+function filterAnimal(filterAnimal,data){
+    const transformedData = [];
+
+    data.forEach(location => {
+        location.people.forEach(person => {
+          person.animals.forEach(animal => {
+            if (animal.name.includes(filterAnimal)) {
+                transformedData.push({
                     name: location.name,
-                    people: [
+                    people:[
                         {
                             name: person.name,
-                            animals: [{ name: filteredAnimal.name }],
-                        },
-                    ],
-                }))
-        )
-    );
+                            animals:[{
+                                name: animal.name
+                            }]
+                        }
+                    ]
+                })
+            }
+          });
+        });
+      });
+
+      return transformedData;
+
 }
 
 module.exports = {
