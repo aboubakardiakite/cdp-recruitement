@@ -1,10 +1,27 @@
 
-function getChildren(data,filterChildren){
+function myFunction(filterAnimal,data,name,func) {
+
+    const transformedData = [];
+
+    const res = [...func(filterAnimal,data)]
+
+    if(res.length != 0){
+        transformedData.push({
+            name: name ,
+            people : res
+        })
+    }
+
+    return transformedData;
     
+}
+
+function getChildren(filterChildren,data){
+
     const transformedData = data.filter( (animal) => animal.name.includes(filterChildren)).map((animalName)=>{
-        return [{
+        return {
             name: animalName.name
-        }]
+        }
     });
 
     return transformedData;
@@ -12,32 +29,23 @@ function getChildren(data,filterChildren){
 }
 
 
-function filterChildren(data,filterAnimal){
+function filterChildren(filterAnimal,data){
     const transformedData = [];
     data.forEach(person =>{
-        const res = [...getChildren(person.animals,filterAnimal)]
-        if(res.length != 0){
-            transformedData.push({
-                name: person.name,
-                animals: res
-            })
-        }
+        transformedData.push(...myFunction(filterAnimal, person.animals,person.name, getChildren));
+
     })
 
     return transformedData;
 }
 
+
+
+
 function filterAnimal(filterAnimal,data){
     const transformedData = [];
     data.forEach(location => {
-        const res = [...filterChildren(location.people,filterAnimal)]
-        if(res.length != 0){
-            transformedData.push({
-                name: location.name ,
-                people : res
-            })
-        }
-
+        transformedData.push(...myFunction(filterAnimal, location.people, location.name, filterChildren));
     });
 
     return transformedData;
